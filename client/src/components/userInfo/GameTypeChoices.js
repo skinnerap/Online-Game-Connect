@@ -31,7 +31,7 @@ const GameTypeChoices = ( props ) => {
                 </Dropdown.Menu>
             </Dropdown>
             
-            <span style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}}>Selected Game Type: {selectedGameType}</span>
+            <span style={{alignSelf: 'center', marginLeft: '10px', color: 'white', border: '1px solid #666', padding: '5px', borderRadius: '5px'}}>Selected Game Type: {selectedGameType}</span>
 
         </div>
     )

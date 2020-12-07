@@ -25,7 +25,7 @@ const Gamertag = ( props ) => {
             onChange={(e) => handleMessageInput(e)}
           />
         </InputGroup>
-        <Button onClick={() => props.playerName(gamerName)}>Add Name</Button>
+        <Button onClick={() => props.playerName(gamerName)} style={{marginLeft: '5px'}}>Add Name</Button>
       </Form>
 
     </div>

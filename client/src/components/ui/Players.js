@@ -14,7 +14,7 @@ const Players = ( props ) => {
             </thead>
             <tbody>  
                 {props.payload.map((player, ind) => (
-                    <tr>
+                    <tr key={player.id}>
                         <td>{ind}</td>
                         <td>{player.playerGame}</td>
                         <td>{player.playerPlaylist}</td>

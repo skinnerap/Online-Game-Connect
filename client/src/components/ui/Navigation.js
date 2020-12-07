@@ -14,9 +14,6 @@ const Navigation = ( props ) => {
     const [playlistSelected, setPlaylistSelected] = useState("") // Stores user's selected playlist preference
     const [messages, setMessages] = useState([]);      // Stores all messages the user has seen.
 
-    console.log(messages)
-    console.log(yourId)
-
     const socketRef = useRef();                        // An instance of the user's socket
 
     useEffect(() => {
@@ -27,7 +24,6 @@ const Navigation = ( props ) => {
         });
 
         socketRef.current.on("message", body => {      // When the user's socket receives a "message" event
-            console.log("received player details")
             receivedMessage(body);                         // Pass the message to a function to receive it
         })
 
@@ -66,7 +62,6 @@ const Navigation = ( props ) => {
     return (
         <>
         <Navbar variant="dark" background="dark" className="bg-dark justify-content-between">
-            <Navbar.Brand href="#">Find Gamers Online</Navbar.Brand>
             <Gamertag playerName={(playerName) => updatePlayerName(playerName)}/>
             <GameSelection gameSelected={(gameSelected) => updateGameSelected(gameSelected)} />
             <GameTypeChoices gameTypeSelected={(playlistSelected) => updatePlaylistSelected(playlistSelected)} /> 
