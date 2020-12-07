@@ -1,0 +1,1 @@
+const GAME_TYPES = ['MLG Customs', 'Multiplayer Online Ranked', 'Multiplayer Online Social', 'Custom Games', 'Campaign'];
