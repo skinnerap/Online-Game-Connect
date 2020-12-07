@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Form, FormControl, InputGroup } from 'react-bootstrap';
 import io from 'socket.io-client';
 import './info.css';
 
@@ -27,8 +28,9 @@ function Gamertag() {
     setMessages((messages) => [...messages, body]);
   }
 
-  const sendMessage = () => {
+  const sendMessage = (e) => {
 
+    e.preventDefault();                            // Prevents Form from submitting
     const msgObj = {                               // Store the message as an object with the message body and user's ID
       body: message,
       id: yourId
@@ -45,22 +47,30 @@ function Gamertag() {
   }
 
   return (
+    
     <div className="Gamertag">
-      <h2>Enter Your Gamertag</h2>
+      <Form inline onSubmit={(e) => sendMessage(e)}>
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            placeholder="Gamertag"
+            aria-label="Gamertag"
+            aria-describedby="basic-addon1"
+            onChange={(e) => handleMessageInput(e)}
+          />
+        </InputGroup>
+      </Form>
       {messages.map((msg, ind) => (
         msg.id === yourId ? 
-        <div className="User-msgs" key={ind}>
+        <span className="User-msgs" style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}} key={ind}>
           {msg.body}
-        </div> :
-        <div className="Other-msgs" key={ind}>
+        </span> :
+        <span className="Other-msgs" style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}} key={ind}>
           {msg.body}
-        </div>
+        </span>
       ))}
-
-      <div className="Input-bar">
-        <input type="text" placeholder="Enter Gamertag" onChange={(e) => handleMessageInput(e)} />
-        <button onClick={sendMessage}>Submit</button>
-      </div>
 
     </div>
   );

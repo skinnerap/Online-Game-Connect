@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, FormControl } from 'react-bootstrap';
 import './info.css';
 
 const GameSelection = ( props ) => {
@@ -41,27 +42,33 @@ const GameSelection = ( props ) => {
     }
 
     return (
-        <div className="GameSelection">
+        <div className="Game-selection">
+            <Form inline onSubmit={(e) => e.preventDefault()}>
+           
+                <FormControl 
+                    type="text" 
+                    placeholder="Search Game Titles" 
+                    onChange={(e) => handleUserSearchChange(e)} 
+                    className=" mr-sm-2" />
+<span style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}}>Selected Game: {selectedGame}</span>
+            </Form>
 
-            <h2>Search For Your Game</h2>
+            
 
-            <input 
-                type="text" 
-                placeholder="Search Game Titles" 
-                onChange={(e) => handleUserSearchChange(e)} />
-            {validGameList ? 
-            validGameList.map((game, ind) => (
-                <div 
-                    className="Game-choice" 
-                    key={ind}
-                    onClick={() => handleUserSelectedGame(game)}
-                >
-                    {game}
-                </div>
-            )) : 
-            null}
+            <div className="Overlay">
 
-            <p>Selected Game: {selectedGame}</p>
+                {validGameList ? 
+                    validGameList.map((game, ind) => (
+                        <option 
+                            key={ind}
+                            className="Game-option"
+                            onClick={() => handleUserSelectedGame(game)}
+                        >
+                            {game}
+                        </option>
+                    )) : null}
+
+            </div>
 
         </div>
     )

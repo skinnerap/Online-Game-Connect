@@ -1,7 +1,4 @@
-.Game-selection {
-    display: flex;
-    flex-flow: column;
-}
+
 
 .Game-choice {
     border: 1px solid rgb(83, 83, 83);
@@ -16,4 +13,35 @@
 
 .Game-choice:hover {
     background-color: rgb(168, 168, 168);
+}
+
+.Game-type-choices {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.Input-bar {
+    width: 200px;
+}
+
+.Search-bar {
+    padding: 20px;
+    font-size: 125%;
+}
+
+.Overlay {
+    position: absolute;
+    top: 12;
+    right: 10;
+    z-index: 1000;
+}
+
+.Game-option {
+    cursor: pointer;
+    transition: .6s;
+}
+
+.Game-option:hover {
+    background-color: rgb(161, 161, 161);
 }

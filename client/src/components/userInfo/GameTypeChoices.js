@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import './info.css';
 
 const GameTypeChoices = ( props ) => {
@@ -9,13 +10,24 @@ const GameTypeChoices = ( props ) => {
 
     return (
         <div className="Game-type-choices">
-            <h2>Choose Game Type</h2>
-            {GAME_TYPES.map((gameType, ind) => (
-                <div className="Game-choice" key={ind} onClick={() => setSelectedGameType(gameType)}>
-                    {gameType}
-                </div>
-            ))}
-            <p>Selected Game Type: {selectedGameType}</p>
+            <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    Select Game Type
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    {GAME_TYPES.map((gameType, ind) => (
+                        <Dropdown.Item 
+                            key={ind} 
+                            onClick={() => setSelectedGameType(gameType)}
+                        >
+                            {gameType}
+                        </Dropdown.Item>
+                    ))}
+                </Dropdown.Menu>
+            </Dropdown>
+            
+            <span style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}}>Selected Game Type: {selectedGameType}</span>
+
         </div>
     )
 }
