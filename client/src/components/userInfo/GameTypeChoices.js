@@ -8,6 +8,11 @@ const GameTypeChoices = ( props ) => {
 
     const [selectedGameType, setSelectedGameType] = useState("");
 
+    const updateSelectedGameType = ( gameType ) => {
+        props.gameTypeSelected(gameType);
+        setSelectedGameType(() => gameType);
+    }
+
     return (
         <div className="Game-type-choices">
             <Dropdown>
@@ -18,7 +23,7 @@ const GameTypeChoices = ( props ) => {
                     {GAME_TYPES.map((gameType, ind) => (
                         <Dropdown.Item 
                             key={ind} 
-                            onClick={() => setSelectedGameType(gameType)}
+                            onClick={() => updateSelectedGameType(gameType)}
                         >
                             {gameType}
                         </Dropdown.Item>

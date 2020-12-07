@@ -16,7 +16,7 @@ const Author = ( props ) => {
                     information about new games to support on the website. Thank you so much for visiting and using
                     Game Connect!
                 </Card.Text>
-                <Button variant="primary">Developer Info / Contribute</Button>
+                <Button href="http://www.github.com/skinnerap" target="_blank" variant="primary">Developer Info / Repository</Button>
             </Card.Body>
             <Card.Footer className="text-muted">Alexander Skinner</Card.Footer>
         </Card>

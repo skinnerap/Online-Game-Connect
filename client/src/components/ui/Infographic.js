@@ -7,7 +7,7 @@ const Infographic = ( props ) => {
         <div>
             <h2 style={{textAlign: 'center'}}>How It Works</h2>
             <div className="Infographic">
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem', marginRight: '20px' }}>
                     <Card.Body>
                         <Card.Title>Enter Your Gamertag</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">How gamers find you, and you find other gamers!</Card.Subtitle>
@@ -17,7 +17,7 @@ const Infographic = ( props ) => {
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem', marginRight: '20px' }}>
                     <Card.Body>
                         <Card.Title>Select Your Game</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">More game support is coming soon!</Card.Subtitle>
@@ -27,10 +27,10 @@ const Infographic = ( props ) => {
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem', marginRight: '20px' }}>
                     <Card.Body>
                         <Card.Title>Pick a Game Type</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">Play matchmaking, custom games. campaign, and more!</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">Play matchmaking, custom games, campaign, and more!</Card.Subtitle>
                         <Card.Text>
                         Choose a game type that you want to play today. Some players like big team battle customs, others like ranked
                         matchmaking playlists!

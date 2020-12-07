@@ -37,20 +37,20 @@ const GameSelection = ( props ) => {
 
     const handleUserSelectedGame = (game) => {
         setValidGameList([]);                       // Reset the valid games list to empty array as user search is now empty
-        setUserSearch("");                          // Reset the user's search to an empty string
-        setSelectedGame(game);                      // Store the selected game
+        setUserSearch("");                          // Reset the user's search to an empty string  
+        props.gameSelected(game)                    // Sends the selected game back to the parent where data is being used
+        setSelectedGame(() => game)                 // Stores the selected game locally for display in this component
     }
 
     return (
         <div className="Game-selection">
             <Form inline onSubmit={(e) => e.preventDefault()}>
-           
                 <FormControl 
                     type="text" 
                     placeholder="Search Game Titles" 
                     onChange={(e) => handleUserSearchChange(e)} 
                     className=" mr-sm-2" />
-<span style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}}>Selected Game: {selectedGame}</span>
+                <span style={{alignSelf: 'center', marginLeft: '10px', color: 'white'}}>Selected Game: {selectedGame}</span>
             </Form>
 
             
