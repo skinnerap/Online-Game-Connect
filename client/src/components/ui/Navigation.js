@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar, Button, Spinner } from 'react-bootstrap';
 import GameSelection from '../userInfo/GameSelection';
 import GameTypeChoices from '../userInfo/GameTypeChoices';
 import Gamertag from '../userInfo/Gamertag';
@@ -13,6 +13,7 @@ const Navigation = ( props ) => {
     const [gameSelected, setGameSelected] = useState("") // Stores user's selected game (by title)
     const [playlistSelected, setPlaylistSelected] = useState("") // Stores user's selected playlist preference
     const [messages, setMessages] = useState([]);      // Stores all messages the user has seen.
+    const [databasePlayers, setDatabasePlayers] = useState([]);
 
     const socketRef = useRef();                        // An instance of the user's socket
 
@@ -24,7 +25,21 @@ const Navigation = ( props ) => {
         });
 
         socketRef.current.on("message", body => {      // When the user's socket receives a "message" event
-            receivedMessage(body);                         // Pass the message to a function to receive it
+            receivedMessage(body);                     // Pass the message to a function to receive it
+        });
+
+        const playersRef = props.db.collection("players").doc("halo 3");
+        const collectionRef = props.db.collection("players");
+        
+        collectionRef.get().then(collection => {
+            console.log(collection.docs[1].data());
+            let arr = [];
+            for(let i=1; i<collection.docs.length; i++) {
+                arr.push(collection.docs[i].data());
+            }
+            setDatabasePlayers(() => arr);
+        }).catch(err => {
+            alert(err)
         })
 
     }, []);                                            // Runs only once on initial component render
@@ -42,6 +57,8 @@ const Navigation = ( props ) => {
             playerPlaylist: playlistSelected,
             id: yourId
         }
+
+        props.db.collection("players").doc(gameSelected.toString()).set(msgObj);
 
         socketRef.current.emit("send message", msgObj);
 
@@ -69,7 +86,12 @@ const Navigation = ( props ) => {
                 Submit
             </Button>
         </Navbar>
-        <Players payload={messages} />
+        {databasePlayers ? 
+            <Players payload={messages} dbPlayers={databasePlayers} /> :
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>}
+        
         </>
     )
 }

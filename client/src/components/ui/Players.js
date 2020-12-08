@@ -21,7 +21,14 @@ const Players = ( props ) => {
                         <td>{player.playerName}</td>
                     </tr>
                 ))}
-                
+                {props.dbPlayers.map((player, ind) => (
+                    <tr key={player.id}>
+                        <td>{ind}</td>
+                        <td>{player.playerGame}</td>
+                        <td>{player.playerPlaylist}</td>
+                        <td>{player.playerName}</td>
+                    </tr>
+                ))}
             </tbody>
         </Table>
     )
