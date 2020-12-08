@@ -4,6 +4,7 @@ import Infographic from '../ui/Infographic';
 import Navigation from '../ui/Navigation';
 import Author from '../ui/Author';
 import Header from '../ui/Header';
+import Logo from '../ui/Logo';
 import './home.css';
 import firebase from 'firebase';
 // Required for side-effects
@@ -33,6 +34,7 @@ const Home = ( props ) => {
 
     return (
         <Container fluid>
+            <Logo />
             <Header />
             <Navigation db={db} />
             <Infographic />

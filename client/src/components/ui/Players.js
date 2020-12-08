@@ -6,7 +6,6 @@ const Players = ( props ) => {
         <Table striped bordered hover variant="dark">
             <thead>
                 <tr>
-                <th>#</th>
                 <th>Game</th>
                 <th>Playlist</th>
                 <th>Gamertag</th>
@@ -15,7 +14,6 @@ const Players = ( props ) => {
             <tbody>  
                 {props.payload.map((player, ind) => (
                     <tr key={player.id}>
-                        <td>{ind}</td>
                         <td>{player.playerGame}</td>
                         <td>{player.playerPlaylist}</td>
                         <td>{player.playerName}</td>
@@ -23,7 +21,6 @@ const Players = ( props ) => {
                 ))}
                 {props.dbPlayers.map((player, ind) => (
                     <tr key={player.id}>
-                        <td>{ind}</td>
                         <td>{player.playerGame}</td>
                         <td>{player.playerPlaylist}</td>
                         <td>{player.playerName}</td>

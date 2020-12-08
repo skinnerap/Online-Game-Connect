@@ -28,13 +28,11 @@ const Navigation = ( props ) => {
             receivedMessage(body);                     // Pass the message to a function to receive it
         });
 
-        const playersRef = props.db.collection("players").doc("halo 3");
         const collectionRef = props.db.collection("players");
         
         collectionRef.get().then(collection => {
-            console.log(collection.docs[1].data());
             let arr = [];
-            for(let i=1; i<collection.docs.length; i++) {
+            for(let i=collection.docs.length-1; i>=0; i--) {
                 arr.push(collection.docs[i].data());
             }
             setDatabasePlayers(() => arr);
@@ -58,7 +56,7 @@ const Navigation = ( props ) => {
             id: yourId
         }
 
-        props.db.collection("players").doc(gameSelected.toString()).set(msgObj);
+        props.db.collection("players").doc(gameSelected.toString() + '-' + playlistSelected + '-' + yourId).set(msgObj);
 
         socketRef.current.emit("send message", msgObj);
 
@@ -78,20 +76,20 @@ const Navigation = ( props ) => {
 
     return (
         <>
-        <Navbar variant="dark" background="dark" className="bg-dark justify-content-between">
-            <Gamertag playerName={(playerName) => updatePlayerName(playerName)}/>
-            <GameSelection gameSelected={(gameSelected) => updateGameSelected(gameSelected)} />
-            <GameTypeChoices gameTypeSelected={(playlistSelected) => updatePlaylistSelected(playlistSelected)} /> 
-            <Button onClick={(e) => sendPlayerDetails(e)}>
-                Submit
-            </Button>
-        </Navbar>
-        {databasePlayers ? 
+            <Navbar variant="dark" background="dark" className="bg-dark justify-content-between">
+                <Gamertag playerName={(playerName) => updatePlayerName(playerName)}/>
+                <GameSelection gameSelected={(gameSelected) => updateGameSelected(gameSelected)} />
+                <GameTypeChoices gameTypeSelected={(playlistSelected) => updatePlaylistSelected(playlistSelected)} /> 
+                <Button onClick={(e) => sendPlayerDetails(e)}>
+                    Submit
+                </Button>
+            </Navbar>
+
+            {databasePlayers ? 
             <Players payload={messages} dbPlayers={databasePlayers} /> :
-            <Spinner animation="border" role="status">
+            <Spinner animation="border" role="status" size="large" style={{alignSelf: 'center'}}>
                 <span className="sr-only">Loading...</span>
             </Spinner>}
-        
         </>
     )
 }
